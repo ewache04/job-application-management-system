@@ -1,0 +1,46 @@
+{# templates/index.html #}
+{% extends urls_paths.base_html %}
+{% load static %}  <!-- Load the static template tag library -->
+
+{% block title %}Index{% endblock %}
+
+<!-- Container (Index Section) -->
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="slide panel-body" style="background-color: powderblue">
+                <div>
+                    <h1>
+                        {% if 'company_name' in request.session %}
+                            Welcome to {{ request.session.company_name }}!
+                        {% else %}
+                            Welcome to {{ default_app_name }}! 
+                        {% endif %}
+                    </h1>
+                </div>
+                <!-- Span for Image -->
+                <div class="container-fluid text-center">
+                    <span 
+                        style="
+                            display: inline-block;
+                            width: 200px; /* Adjust width as needed */
+                            height: 200px; /* Adjust height as needed */
+                            background-image: url('{% static 'media/photos/background_img/creative_brain.png' %}');
+                            background-size: cover;
+                            background-position: center;
+                            border-radius: 50%; /* Optional: makes the image circular */
+                            margin: auto; /* Center the image */
+                        ">
+                    </span>
+                </div>
+                <div class="btn-group">
+                    <a href="{% url urls_paths.login.redirect %}" class="btn btn-default">Login</a>
+                    <a href="{% url urls_paths.signup.redirect %}" class="btn btn-default">Sign-up</a>
+                    <a href="{% url urls_paths.password_reset_email.redirect %}" class="btn btn-default">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

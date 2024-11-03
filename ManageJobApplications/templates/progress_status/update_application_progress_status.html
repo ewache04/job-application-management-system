@@ -1,0 +1,54 @@
+{#ManageJobApplications/templates/progress_status/update_application_progress_status.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Job Application Progress{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Update Progress Status Form -->
+            <h3 class="card-title">Update Job Progress</h3>
+
+            <div class="text-center">
+                <h5>
+                    Currently, your interest level is a "{{ progress_status.interest_level }}" and
+                    your application Status is "{{ progress_status.application_status }}"
+                </h5>
+            </div>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.update_application_progress_status.redirect application_id=application.pk progress_status_id=progress_status.pk %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="row"><br><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update Application</button>
+                            <a href="{% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}" class="btn btn-default">
+                                Go Back
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

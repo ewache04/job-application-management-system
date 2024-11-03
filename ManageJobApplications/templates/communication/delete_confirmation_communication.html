@@ -1,0 +1,26 @@
+{% extends urls_paths.base_html %}
+
+{% block title %}Confirm Delete Communication{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+                <h3 class="card-title">Confirm Communication Deletion</h3>
+
+                <!-- Confirm deletion of a communication -->
+                <p>Are you sure you want to delete the communication with subject "{{ communication.assistant_message_subject }}" associated with "{{ communication.application.company_name }}"?</p>
+
+                <form method="post" action="{% url urls_paths.delete_confirmation_communication.redirect application_id=application.pk communication_id=communication.pk %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-sm">Yes, Delete</button>
+                        <a href="{% url urls_paths.communication_details.redirect application_id=application.pk communication_id=communication.pk %}" class="btn btn-default btn-sm" title="Go Back">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django database files
+*.sqlite3
+
+# Virtual environment
+venv/
+.venv/
+
+# Environment variable files
+.env
+
+# Logs
+*.log
+
+# Django specific files
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Media files
+media/
+
+# Static files
+staticfiles/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Mac system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Local configuration files
+local_settings.py

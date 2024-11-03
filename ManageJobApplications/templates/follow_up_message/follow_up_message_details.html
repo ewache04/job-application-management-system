@@ -1,0 +1,36 @@
+{#ManageJobApplications/templates/follow_up_message/follow_up_message_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Follow-up Message Details - {{ follow_up_message.follow_up_message_subject }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Follow-up Message Details at {{ application.company_name }}</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="text-center"><strong>Assistant Generated Follow-Up Message</strong></h4>
+
+                    <div class="non-editable-textarea wrap-text">
+                        <p><strong>Follow-up Message:</strong></p>
+                        <p><strong>Subject:</strong> {{ follow_up_message.follow_up_message_subject|default:"N/A" }}</p>
+                        <p><strong>Created on:</strong> {{ follow_up_message.created_at|default:"N/A" }}</p>
+                        <p><strong>Receiver's Email:</strong> {{ follow_up_message.receivers_email|default:"N/A" }}</p>
+
+                        {{ follow_up_message.follow_up_message|default:"N/A"|linebreaks }}
+                        <p><strong>Scheduled Send Date:</strong> {{ follow_up_message.scheduled_send_date|default:"N/A" }}</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

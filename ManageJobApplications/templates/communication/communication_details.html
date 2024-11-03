@@ -1,0 +1,40 @@
+{#ManageJobApplications/templates/communication/communication_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Communication Details - {{ communication.subject }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <article class="card">
+                <header class="card-header text-center">
+                    <h1 class="card-title">Communication Details</h1>
+                </header>
+                <div class="card-body">
+                    <section>
+                        <h2>Subject</h2>
+                        <p><strong>Subject:</strong> {% if communication.communication_subject %}{{ communication.communication_subject }}{% else %}N/A{% endif %}</p>
+                    </section>
+
+                    <section>
+                        <h2>Summary</h2>
+                        <div>
+                            {% if communication.communication_summary %}
+                                {{ communication.communication_summary|linebreaks }}
+                            {% else %}
+                               No career summary available.
+                            {% endif %}
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,12 @@
+<!-- templates/loading_indicator.html -->
+
+<!-- Loading Indicator -->
+<div class="spinner-overlay" id="loadingSpinner">
+    <div class="spinner"></div>
+    {% if request.session.loading_indicator %}
+        <p>{{ request.session.loading_indicator }}</p>
+    {% else %}
+        <p>Loading...</p>
+    {% endif %}
+</div>
+

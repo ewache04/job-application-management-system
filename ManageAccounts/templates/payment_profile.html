@@ -1,0 +1,59 @@
+<!-- ManageAccounts/templates/payment_profile.html -->
+{% extends urls_paths.base_html %}
+{% block title %}Payment Profile{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default" id="content-panel">
+            <div class="panel-heading">
+                <h2>Payment Profile</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <!-- Payment Methods Section -->
+                    <div class="col-sm-6">
+                        <h3>Payment Methods</h3>
+                        {% for payment_method in payment_methods %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    {{ payment_method.stripe_payment_method_id }}
+                                    {% if payment_method.is_default %}
+                                        (Default)
+                                    {% endif %}
+                                </div>
+                                <div class="panel-body">
+                                    <a href="{% url 'remove_payment_method' payment_method.id %}" class="btn btn-danger">Remove</a>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="alert alert-info" role="alert">
+                                No payment methods found.
+                            </div>
+                        {% endfor %}
+                        <a href="{% url 'add_payment_method' %}" class="btn btn-primary">Add Payment Method</a>
+                    </div>
+
+                    <!-- Subscriptions Section -->
+                    <div class="col-sm-6">
+                        <h3>Subscriptions</h3>
+                        {% for subscription in subscriptions %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{ subscription.plan.name }}</div>
+                                <div class="panel-body">
+                                    <p>Start Date: {{ subscription.start_date }}</p>
+                                    <p>End Date: {{ subscription.end_date }}</p>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="alert alert-info" role="alert">
+                                No active subscriptions found.
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

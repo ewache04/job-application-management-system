@@ -1,0 +1,102 @@
+<!-- Accounts/templates/user_account.html -->
+{% extends urls_paths.base_html %}
+{% block title %}User account{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="text-center">
+                <div class="panel-body">
+                    <h2 class="card-title">Account Settings</h2>
+                    <div class="row row-eq-height">
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Profile">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.update_profile.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-person"></i> Profile</h4>
+                                        <i class="hidden-xs">View and edit your profile information</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="User Details">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.user_details.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-person"></i> User Details</h4>
+                                        <i class="hidden-xs">View and edit your profile information</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Change Password">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.change_password.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-shield-lock"></i> Change Password</h4>
+                                        <i class="hidden-xs">Change your account password</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Manage Assistant Settings">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{{ assistant_settings_url }}'" role="button">
+                                        <h4><i class="bi bi-gear"></i> Assistant</h4>
+                                        <i class="hidden-xs">Manage ManageAssistant settings</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Manage API Settings">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.api_key_list.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-code-slash"></i> API Settings</h4>
+                                        <i class="hidden-xs">Manage API settings</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Delete Account">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url  urls_paths.confirm_delete_user.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-trash"></i> Delete Account</h4>
+                                        <i class="hidden-xs">Permanently delete your account</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Background Looks">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{{ backgroundlooks_url }}'" role="button">
+                                        <h4><i class="bi bi-image"></i> Update  Background</h4>
+                                        <i class="hidden-xs">Manage background color/images</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-xs-12 text-center" id="row_display">
+                            <div class="panel-group">
+                                <div class="panel panel-admin" title="Payment Profile">
+                                    <div class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.subscription_list.redirect user_id=user.pk %}'" role="button">
+                                        <h4><i class="bi bi-currency-dollar"></i> Subscription</h4>
+                                        <i class="hidden-xs">Manage your Subscription settings</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

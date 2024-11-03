@@ -1,0 +1,12 @@
+{# ManageCareerSummary/templates/career_summary/manage_career_summary_buttons.html #}
+
+
+<a href="{% url urls_paths.generate_career_summary.redirect user_id=user.pk %}"
+   class="btn btn-lg btn-primary">
+    <i class="fas fa-sync-alt"></i> Regenerate
+</a>
+
+<a href="{% url urls_paths.update_career_summary.redirect user_id=user.pk career_summary_id=career_summary.pk %}"
+   class="btn btn-lg btn-warning">
+    <i class="fas fa-edit"></i> Edit
+</a>

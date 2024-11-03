@@ -1,0 +1,55 @@
+{#ManageJobApplications/templates/cover_letter/cover_letter_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Cover Letter Details - {{ cover_letter.first_name }} {{ cover_letter.last_name }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1 class="card-title">Cover Letters at {{ application.company_name }}</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Uploaded Cover Letter Section -->
+                    <h4><strong>Uploaded Cover Letter:</strong>
+                        {% if uploaded_cover_letter and uploaded_cover_letter.file %}
+                            Here is the link for you to download the original cover letter you submitted:<br>
+                            <a href="{{ uploaded_cover_letter.file.url }}" download="{{ uploaded_cover_letter.file.name }}">{{ uploaded_cover_letter_file_name }}</a>.
+                        {% else %}
+                            Uploaded cover letter missing
+                        {% endif %}
+                    </h4>
+
+                    <!-- Assistant Analysis Section -->
+                    <h4><strong>Analysis</strong></h4>
+                    <div class="non-editable-textarea wrap-text">
+                        {% if cover_letter.assistant_observation %}
+                            <div>{{ cover_letter.assistant_observation|linebreaks }}</div>
+                        {% else %}
+                            <p>Assistant observation is missing</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Assistant Generated Cover Letter Section -->
+                    <h4><strong>Assistant Generated Cover Letter</strong></h4>
+                    <div class="non-editable-textarea wrap-text">
+                        {% if cover_letter.letter %}
+                            <p><strong>Subject:</strong> {{ cover_letter.subject|default:"N/A" }}</p>
+                            <div>{{ cover_letter.letter|linebreaks }}</div>
+                            <!-- Creation Date -->
+                            <p><strong>Created on:</strong> {{ cover_letter.created_at|default:"N/A" }}</p>
+                        {% else %}
+                            <p>Generated cover letter is missing</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

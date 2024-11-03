@@ -1,0 +1,52 @@
+{% extends urls_paths.base_html %}
+
+{% block title %}Projects List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Projects List -->
+            {% if job_profile_projects %}
+            <div class="table-responsive">
+                <h3 class="card-title">Project List at {{ job_profile.company }}</h3>
+
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Project Subject</th>
+                            <th>Created at</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job_profile_project in job_profile_projects %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.job_profile_project_details.redirect user_id=user.pk job_profile_id=job_profile.pk job_profile_project_id=job_profile_project.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ job_profile_project.project_subject }}</td>
+                            <td>{{ job_profile_project.created_at }}</td>
+                            <td>
+                                <a href="{% url urls_paths.job_profile_project_details.redirect user_id=user.pk job_profile_id=job_profile.pk job_profile_project_id=job_profile_project.pk %}" title="View Job Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center">No Projects available.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No Projects available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

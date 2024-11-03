@@ -1,0 +1,10 @@
+{# ManageAssistant/templates/assistant_settings/manage_assistant_settings_buttons.html #}
+
+<a href="{% if settings.pk %}
+             {% url urls_paths.create_or_update_assistant_settings.redirect user_id=user.pk assistant_id=settings.pk %}
+           {% else %}
+             {% url urls_paths.create_or_update_assistant_settings_no_id.redirect user_id=user.pk %}
+           {% endif %}"
+   class="btn btn-lg btn-warning">
+    <i class="fas fa-edit"></i> Edit
+</a>

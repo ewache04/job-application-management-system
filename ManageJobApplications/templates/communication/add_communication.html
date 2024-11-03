@@ -1,0 +1,59 @@
+{# ManageJobApplications/templates/communication/add_communication.html #}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Communication{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Add Communication Form -->
+            <h3 class="card-title">Add Communication</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.add_communication.redirect application_id=application.pk %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center" ><b>Company Message</b></h3>
+                                <textarea name="company_message" rows="12" class="form-control" placeholder="Please provide the most recent message you received from the company (e.g., confirmation of application received)">{{ request.POST.company_message }}</textarea>
+                                {% if form.company_message.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.company_message.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center"><b>Applicant Message</b></h3>
+                                <textarea name="applicant_message" rows="12" class="form-control" placeholder="Please provide your response to the company's message you provided">{{ request.POST.applicant_message }}</textarea>
+                                {% if form.applicant_message.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.applicant_message.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Add Communication</button>
+                            <a href="{% url urls_paths.communication_list.redirect application_id=application.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

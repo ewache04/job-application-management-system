@@ -1,0 +1,35 @@
+{#ManageCareerSummary/templates/career_summary/career_summary_details.html{% extends urls_paths.base_html %}#}
+{% extends urls_paths.base_html %}
+{% block title %}Career Summary{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="text-center">
+                <h1 class="card-title">Career Summary</h1>
+            </div>
+            <div class="panel slide">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <article class="card">
+
+                                {% if career_summary %}
+                                    <li class="list-group-item"><strong>Career Summary:</strong> {{ career_summary.career_summary }}</li>
+                                {% else %}
+                                    <li class="list-group-item text-danger"><strong>No career summary available.Please ensure to add job profile and projects</strong></li>
+                                {% endif %}
+
+                            </article>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

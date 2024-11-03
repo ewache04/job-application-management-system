@@ -1,0 +1,31 @@
+{# ManageAssistant/templates/assistant_settings/assistant_settings_detail.html #}
+{% extends urls_paths.base_html %}
+{% block title %}Assistant Settings{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="text-center">
+                <h3 class="card-title">Assistant Settings Details</h3>
+            </div>
+            <div class="panel slide">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Selected Model:</strong> {{ settings.selected_model }}</li>
+                                <li class="list-group-item"><strong>Max Tokens:</strong> {{ settings.max_tokens }}</li>
+                                <li class="list-group-item"><strong>Temperature:</strong> {{ settings.temperature }}</li>
+                                <li class="list-group-item"><strong>Top P:</strong> {{ settings.top_p }}</li>
+                                <li class="list-group-item"><strong>Frequency Penalty:</strong> {{ settings.frequency_penalty }}</li>
+                                <li class="list-group-item"><strong>Presence Penalty:</strong> {{ settings.presence_penalty }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

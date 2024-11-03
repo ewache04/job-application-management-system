@@ -1,0 +1,54 @@
+{#ManageJobApplications/templates/resume/resume_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Resume Details - {{ resume.resume_name }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Resume Details for {{ application.company_name }}</h3>
+                </div>
+                <div class="card-body">
+                    <h4><strong>Uploaded Resume:</strong>
+                        {% if uploaded_resume and uploaded_resume.file %}
+                            Here is the link for you to download the original resume you submitted:<br>
+                            <a href="{{ uploaded_resume.file.url }}" download="{{ uploaded_resume.file.name }}">{{ uploaded_resume_file_name }}</a>.
+                        {% else %}
+                            Uploaded resume missing
+                        {% endif %}
+                    </h4>
+
+                    <div class="section">
+                        <h2><strong>Assistant Analysis</strong></h2>
+                        <div class="non-editable-textarea wrap-text">
+                            {% if resume.assistant_observation %}
+                                {{ resume.assistant_observation|linebreaks }}
+                            {% else %}
+                                <p>Assistant observation is missing</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2><strong>Assistant Resume</strong></h2>
+                        <div class="non-editable-textarea wrap-text">
+                            {% if resume.assistant_resume %}
+                                {{ resume.assistant_resume|linebreaks }}
+                            {% else %}
+                                <p>Assistant-generated resume is missing</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <p><strong>Created on:</strong> {{ resume.created_at|default:"N/A" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

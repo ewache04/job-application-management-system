@@ -1,0 +1,47 @@
+{#ManageJobApplications/templates/interview_preparation/interview_preparation_list.html#}
+{% extends urls_paths.base_html %}
+{% block title %}Interview Preparations List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Interview Preparation List -->
+            {% if interview_preparations %}
+            <div class="table-responsive">
+                <h3 class="card-title">Interview Preparations for {{ application.position_title }} at {{ application.company_name }}</h3>
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for interview_preparation in interview_preparations %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.interview_preparation_details.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{% if interview_preparation.title %}{{ interview_preparation.title|truncatewords:20 }}{% else %}Interview Preparation at {{ application.company_name|truncatewords:20 }}......{% endif %}</td>
+                            <td>
+                                <a href="{% url urls_paths.interview_preparation_details.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}"  title="View Interview Preparation Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No interview preparation available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

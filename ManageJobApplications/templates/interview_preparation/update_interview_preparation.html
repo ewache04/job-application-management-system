@@ -1,0 +1,60 @@
+{#ManageJobApplications/templates/interview_preparation/update_interview_preparation.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Interview Preparation{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Update Interview Preparation Form -->
+            <h3 class="card-title">Update Interview Preparation</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.update_interview_preparation.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center"><b>About Company</b></h3>
+                                <textarea name="about_company" rows="12" class="form-control" placeholder="Please provide details about the company">{{ interview_preparation.about_company }}</textarea>
+                                {% if form.about_company.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.about_company.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center"><b>Preparation Questions</b></h3>
+                                <textarea name="prep_questions" rows="12" class="form-control" placeholder="Please provide the preparation questions">{{ interview_preparation.prep_questions }}</textarea>
+                                {% if form.prep_questions.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.prep_questions.errors }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update Interview Preparation</button>
+                            <a href="{% url urls_paths.interview_preparation_details.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

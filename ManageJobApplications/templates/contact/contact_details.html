@@ -1,0 +1,32 @@
+{# templates/contact/contact_details.html #}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Contact Details - {% if contact %}{{ contact.first_name }} {{ contact.last_name }}{% else %}N/A{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Contact Details</h3>
+                </div>
+                <div class="card-body">
+                    {% if contact %}
+                        <p><strong>First Name:</strong> {{ contact.first_name|default:"N/A" }}</p>
+                        <p><strong>Last Name:</strong> {{ contact.last_name|default:"N/A" }}</p>
+                        <p><strong>Email:</strong> {{ contact.email|default:"N/A" }}</p>
+                        <p><strong>Phone Number:</strong> {{ contact.phone_number|default:"N/A" }}</p>
+                        <p><strong>Notes:</strong> {{ contact.notes|default:"N/A" }}</p>
+                    {% else %}
+                        <p>No contact details available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

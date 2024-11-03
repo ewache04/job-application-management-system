@@ -1,0 +1,39 @@
+{#ManageAccounts/templates/login.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<!-- Container (Login Section) -->
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+
+        <div id="content-panel">
+
+            <form class="panel slide" method="post" action="{% url urls_paths.login.redirect %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {{ form|crispy }}
+                    <div class="row">
+                        <br><br>
+                        <div class="col-sm-12 form-group  text-center">
+                            <button class="btn btn-default" type="submit">Login</button>
+                            <a href="#" class="btn btn-default">Forgot password?</a>
+                            <a href="{% url urls_paths.index.redirect %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                {% if form.non_field_errors %}
+                    <div class="panel-body">
+                        <div class="invalid-feedback">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

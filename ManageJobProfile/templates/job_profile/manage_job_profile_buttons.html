@@ -1,0 +1,13 @@
+{#ManageJobApplications/templates/job_profile/manage_job_profile_buttons.html#}
+<a href="{% url urls_paths.job_profile_projects_list.redirect user_id=user.pk job_profile_id=job_profile.pk %}" class="btn btn-lg btn-success" title="View Project List">
+    <i class="bi bi-list"></i> Projects
+</a>
+
+<a href="{% url urls_paths.update_job_profile.redirect user_id=user.pk job_profile_id=job_profile.pk %}" class="btn btn-lg btn-info " title="Edit Job Profile">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.confirm_delete_job_profile.redirect user_id=user.pk job_profile_id=job_profile.pk %}" class="btn btn-lg btn-danger" title="Delete Job Profile">
+    <i class="bi bi-trash"></i> Delete
+</a>
+

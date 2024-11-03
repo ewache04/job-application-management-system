@@ -1,0 +1,46 @@
+<a class="btn btn-lg btn-default h-100 search-and-button-container" href="
+    {% if application_list_mode %}
+        {% url urls_paths.user_home.redirect user_id=user.pk %}
+    {% elif contact_list_mode %}
+        {% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}
+    {% elif communication_list_mode %}
+        {% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}
+    {% elif interview_preparation_list_mode %}
+        {% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}
+    {% elif follow_up_message_list_mode %}
+        {% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}
+    {% elif credentials_list_mode %}
+        {% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}
+    {% elif api_key_list_mode %}
+        {% url urls_paths.user_account.redirect user_id=user.pk %}
+    {% elif stripe_subscription_list_mode %}
+        {% url urls_paths.user_account.redirect user_id=user.pk %}
+        
+    {% elif job_profile_project_list_mode %}
+        {% url urls_paths.job_profile_details.redirect user_id=user.pk job_profile_id=job_profile.pk %}
+    {% else %}
+        {% url urls_paths.user_home.redirect user_id=user.pk %}
+    {% endif %}" 
+    title="{% if application_list_mode %}
+                Go Back to Home
+           {% elif job_profile_project_list_mode %}
+                Go Back to Project Details
+           {% elif contact_list_mode %}
+                Go Back to Application Details
+           {% elif communication_list_mode %}
+                Go Back to Application Details
+           {% elif interview_preparation_list_mode %}
+                Go Back to Application Details
+           {% elif follow_up_message_list_mode %}
+                Go Back to Application Details
+           {% elif credentials_list_mode %}
+                Go Back to Application Details
+           {% elif api_key_list_mode %}
+                Go Back to User Account
+           {% elif stripe_subscription_list_mode %}
+                Go Back to User Account
+           {% else %}
+                Go Back to Home
+           {% endif %}">
+    <span class="mb-0">Go Back</span>
+</a>

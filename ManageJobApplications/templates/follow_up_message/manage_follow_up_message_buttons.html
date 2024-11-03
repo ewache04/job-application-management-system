@@ -1,0 +1,13 @@
+{% if not follow_up_message_details_mode %}
+    <a href="{% url urls_paths.follow_up_message_details.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}" class="btn btn-info btn-lg" title="View Follow-up Message Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+{% endif %}
+
+<a href="{% url urls_paths.update_follow_up_message.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}" class="btn btn-info btn-lg" title="Edit Follow-up Message">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.delete_confirmation_follow_up_message.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}" class="btn btn-danger btn-lg" title="Delete Follow-up Message">
+    <i class="bi bi-trash"></i> Delete
+</a>

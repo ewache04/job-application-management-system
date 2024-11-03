@@ -1,0 +1,105 @@
+<!-- templates/table_search_box_logic.html -->
+
+<div>
+    {% if list_display_mode %}
+    <div class="d-flex justify-content-start align-items-center">
+        <a class="btn btn-lg btn-default h-100 search-and-button-container"
+           
+           {% if stripe_subscription_list_mode and subscription_active %}
+                  disabled='True'
+           {% endif %}
+           
+           href="
+            {% if application_list_mode %}
+                {% url urls_paths.add_application_auto.redirect user_id=user.pk %}
+            {% elif job_profile_list_mode %}
+                {% url urls_paths.add_job_profile.redirect user_id=user.pk %}
+            {% elif job_profile_project_list_mode %}
+                {% url urls_paths.add_job_profile_project.redirect user_id=user.pk job_profile_id=job_profile.pk %}
+            {% elif api_key_list_mode %}
+                {% url urls_paths.add_api_key.redirect user_id=user.pk %}
+            {% elif contact_list_mode %}
+                {% url urls_paths.add_contact.redirect application_id=application.pk %}
+            {% elif communication_list_mode %}
+                {% url urls_paths.add_communication.redirect application_id=application.pk %}
+            {% elif interview_preparation_list_mode %}
+                {% url urls_paths.add_interview_preparation.redirect application_id=application.id %}
+            {% elif follow_up_message_list_mode %}
+                {% url urls_paths.add_follow_up_message.redirect application_id=application.pk %}
+            {% elif credentials_list_mode %}
+                {% url urls_paths.add_application_credential.redirect application_id=application.pk %}
+            {% elif stripe_subscription_list_mode %}
+                {% if not subscription_active %}
+                    {% url urls_paths.product_page.redirect user_id=user.pk  %}
+                {% else %}
+                    #
+                {% endif %}
+            {% else %}
+                {% url urls_paths.add_api_key.redirect user_id=user.pk %}
+            {% endif %}" 
+           
+           title="{% if application_list_mode %}
+                    Add Application
+               {% elif job_profile_list_mode %}
+                    Add Job Profile
+               {% elif job_profile_project_list_mode %}
+                    Add Project
+               {% elif api_key_list_mode %}
+                    Add API Keys
+               {% elif contact_list_mode %}
+                    Add Contact
+               {% elif communication_list_mode %}
+                    Add Communications
+               {% elif interview_preparation_list_mode %}
+                    Add Interview Preparations
+               {% elif follow_up_message_list_mode %}
+                    Add Follow-Up Message
+               {% elif credentials_list_mode %}
+                    Add Credentials
+               {% elif stripe_subscription_list_mode %}
+                    {% if not subscription_active %}
+                        Subscribe Now 
+                    {% else %}
+                        Subscribe Unavailable
+                    {% endif %}
+               {% else %}
+                    New Api Key
+               {% endif %}">
+               
+            <span class="mb-0">
+                {% if application_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Application
+                {% elif job_profile_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Job Profile
+                {% elif job_profile_project_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Project
+                {% elif api_key_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add API Keys
+                {% elif contact_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Contact
+                {% elif communication_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Communications
+                {% elif interview_preparation_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Interview Preparations    
+                {% elif follow_up_message_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Follow-Up Message
+                {% elif credentials_list_mode %}
+                    <i class="bi bi-plus-circle"></i> Add Credentials
+                {% elif stripe_subscription_list_mode %}
+                    {% if not subscription_active %}
+                        <i class="bi bi-plus-circle"></i> Subscribe Now
+                    {% else %}
+                        Subscription Disabled
+                    {% endif %}
+                {% else %}
+                    <i class="bi bi-plus-circle"></i> Add Api Key
+                {% endif %}
+            </span>
+        </a>
+    
+        <!-- Go Back Button -->
+        {% include urls_paths.footer_go_back_button_logic.render %}
+    
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,25 @@
+{% extends urls_paths.base_html %}
+
+{% block title %}Confirm Delete Cover Letter{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+                <h3 class="card-title">Confirm Cover Letter Deletion</h3>
+                <!-- Confirm deletion of a cover letter -->
+                <p>Are you sure you want to delete the cover letter associated with "{{ application.company_name }}"?</p>
+
+                <form method="post" action="{% url urls_paths.delete_confirmation_cover_letter.redirect application_id=application.pk cover_letter_id=cover_letter.pk  %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-sm">Yes, Delete</button>
+                        <a href="{% url urls_paths.application_details.redirect application_id=application.pk %}" class="btn btn-default btn-sm" title="Go Back">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

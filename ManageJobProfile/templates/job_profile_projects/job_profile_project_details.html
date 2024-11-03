@@ -1,0 +1,29 @@
+{#ManageJobApplications/templates/job_profile_projects/job_profile_project_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    {{ job_profile_project.project_subject }} at {{ job_profile.company }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <h3 class="card-title">Project at {{ job_profile.company }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>Project ID:</strong> {{ job_profile_project.id }}</p>
+                    <p><strong>Project Subject:</strong> {{ job_profile_project.project_subject }}</p>
+                    <p><strong>Project Summary ID:</strong> {{ job_profile_project.project_summary }}</p>
+                    <p><strong>Created At:</strong> {{ job_profile_project.created_at|date:"D d M Y H:i:s" }} </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

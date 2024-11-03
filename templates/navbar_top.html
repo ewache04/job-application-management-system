@@ -1,0 +1,85 @@
+<!-- templates/navbar_top.html -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url urls_paths.user_home.redirect user_id=user.pk %}" title="Home">
+            {% else %}
+                <a class="navbar-brand" href="{% url urls_paths.index.redirect %}" title="Home">
+            {% endif %}
+                <i class="bi bi-house-door"></i>
+                {% if 'company_name' in request.session %}
+                    {{ request.session.company_name }} 
+                {% else %}
+                    {{ default_app_name }}
+                {% endif %}
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url urls_paths.explore.redirect %}" title="Explore"><i class="bi bi-compass"></i> EXPLORE</a></li>
+                
+                {% if user.is_authenticated %}
+                    
+                    <!-- Job Profile Button -->
+                    <li>
+                        <a href="{% url urls_paths.job_profile_list.redirect user_id=user.pk %}" title="Job Profile">
+                            <i class="bi bi-briefcase"></i> JOB PROFILE
+                        </a>
+                    </li>
+                    
+                    <!-- Job Story Button -->
+                    {% if career_summary %}
+                        <li class="nav-item">
+                                <a href="{% url urls_paths.career_summary_details.redirect user_id=user.pk career_summary_id=career_summary.pk %}" title="Career Summary">
+                                    <i class="bi bi-briefcase"></i> CAREER SUMMARY
+                                </a>
+                        </li>
+                        
+                    {% else %}
+                        <li class="nav-item">
+                                <a href="{% url urls_paths.generate_career_summary.redirect user_id=user.pk %}" title="Career Summary">
+                                    <i class="bi bi-briefcase"></i> CAREER SUMMARY
+                                </a>
+                        </li>
+                        
+                    {% endif %}
+
+                    
+                    <li><a href="{% url urls_paths.user_account.redirect user_id=user.pk %}" title="Account"><i class="bi bi-person"></i> ACCOUNT</a></li>
+                    <li>
+                        <a href="{% url urls_paths.logout.redirect %}" title="Logout">
+                            <i class="bi bi-box-arrow-right"></i> LOGOUT
+                        </a>
+                    </li>
+
+                {% else %}
+                    <li>
+                        <a href="{% url urls_paths.login.redirect %}" title="Log-in">
+                            <i class="bi bi-box-arrow-in-left"></i> LOG-IN
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url urls_paths.signup.redirect %}" title="Sign-up">
+                            <i class="bi bi-person-plus"></i> SIGN-UP
+                        </a>
+                    </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    
+    {% if search_table %}
+        {% include urls_paths.table_search_box.render %}
+    {% endif %}
+    </div>
+</nav><br>
+
+

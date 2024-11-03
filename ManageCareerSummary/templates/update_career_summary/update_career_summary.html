@@ -1,0 +1,43 @@
+{# ManageCareerSummary/templates/career_summary/update_career_summary.html #}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Career Summary{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <h3 class="card-title">Update Career Summary</h3>
+            <form class="panel slide" method="post" action="{% url urls_paths.update_career_summary.redirect user_id=user.pk career_summary_id=career_summary.pk  %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update Settings</button>
+                            <a href="{% url urls_paths.career_summary_details.redirect user_id=user.pk career_summary_id=career_summary.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

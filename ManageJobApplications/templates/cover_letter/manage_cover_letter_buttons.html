@@ -1,0 +1,16 @@
+{#ManageJobApplications/templates/cover_letter/manage_cover_letter_buttons.html#}
+<!-- Action Buttons -->
+{% if not cover_letter_details_mode %}
+    <a href="{% url urls_paths.cover_letter_details.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}" class="btn btn-lg btn-info" title="View Cover Letter Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+
+
+{% endif %}
+
+<a href="{% url urls_paths.update_cover_letter.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}" class="btn btn-lg btn-info" title="Edit Cover Letter">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+<a href="{% url urls_paths.delete_confirmation_cover_letter.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}" class="btn btn-lg btn-danger" title="Delete Cover Letter">
+    <i class="bi bi-trash"></i> Delete
+</a>

@@ -1,0 +1,24 @@
+{#ManageJobApplications/templates/application/application_crud.html#}
+<ul>
+{% if not application_details_mode %}
+
+    <li>
+        <a href="{% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}" title="View Application Details">
+            <i class="bi bi-info"></i> Details
+        </a>
+    </li>
+{% endif %}
+
+<li>
+    <a href="{% url urls_paths.update_application.redirect user_id=user.pk application_id=application.pk %}" title="Edit Application">
+        <i class="bi bi-pencil-square"></i> Edit
+    </a>
+</li>
+
+<li>
+    <a href="{% url urls_paths.confirm_delete_application.redirect user_id=user.pk application_id=application.pk %}" title="Delete Application">
+        <i class="bi bi-trash"></i> Delete
+    </a>
+</li>
+
+</ul>

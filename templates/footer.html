@@ -1,0 +1,32 @@
+<!-- templates/footer.html -->
+<br>
+<footer class="text-center footer">
+
+    {% if request.session.alert_message %}
+        {% include urls_paths.success_message.render %}
+    {% endif %}
+
+    {% if search_table %}
+        {% include urls_paths.table_search_box_logic.render %}
+        
+    {% elif content_details_mode %}
+        {% include urls_paths.details_button_logic.render %}
+        
+    {% else %}
+        <p>
+            Created By 
+            {% if 'company_name' in request.session %}
+                {{ request.session.company_name }} @2024. All rights reserved.
+            {% else %}
+                {{ default_app_name }} @2024. All rights reserved.
+            {% endif %}
+            || <a href="#myPage" title="To Top"><i class="fas fa-arrow-up"></i> Back to Top</a>
+        </p>
+    {% endif %}
+
+</footer>
+
+
+
+
+

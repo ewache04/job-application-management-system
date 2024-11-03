@@ -1,0 +1,33 @@
+{# ManageSubscription/templates/user_payment/subscription_detail.html #}
+
+{% extends urls_paths.base_html %}
+{% block title %}Subscription Detail{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="card">
+                <h3 class="card-title">Subscription Details</h3>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Plan:</strong> {{ subscription_detail.plan_nickname }}</li>
+                        <li class="list-group-item"><strong>Status:</strong> {{ subscription_detail.status }}</li>
+                        <li class="list-group-item"><strong>Start Date:</strong> {{ subscription_detail.start_date }}</li>
+                        <li class="list-group-item"><strong>End Date:</strong> {{ subscription_detail.end_date }}</li>
+                        <li class="list-group-item"><strong>Next Billing Date:</strong> {{ subscription_detail.next_billing_date }}</li>
+                        <li class="list-group-item"><strong>Amount:</strong> {{ subscription_detail.amount }} {{ subscription_detail.currency }}</li>
+                        <li class="list-group-item"><strong>Billing Interval:</strong> {{ subscription_detail.interval }}</li>
+
+                        {% if refund_eligible %}
+                            <li class="list-group-item text-success"><strong>Refund Eligible:</strong> Yes</li>
+                        {% else %}
+                            <li class="list-group-item text-danger"><strong>Refund Eligible:</strong> No</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

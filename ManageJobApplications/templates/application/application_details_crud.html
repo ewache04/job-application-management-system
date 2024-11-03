@@ -1,0 +1,71 @@
+{#ManageJobApplications/templates/application/application_details_crud.html#}
+ <ul>
+    <!-- Application Progress Button -->
+    <li>
+        <a href="{% url urls_paths.update_application_progress_status.redirect application_id=application.pk progress_status_id=progress_status.pk %}" title="Progress Level">
+            <i class="bi bi-gear-wide-connected"></i> Progress Level
+        </a>
+    </li>
+    <!-- Contact Button -->
+    <li>
+        <a href="{% url urls_paths.contact_list.redirect application_id=application.pk %}" title="Contact">
+            <i class="bi bi-envelope"></i> Contact
+        </a>
+    </li>
+    <!-- Communications Button -->
+    <li>
+        <a href="{% url urls_paths.communication_list.redirect application_id=application.pk %}" title="Communications">
+            <i class="bi bi-chat-left-text"></i> Communications
+        </a>
+    </li>
+    <!-- Follow-up Message Button -->
+    <li>
+        <a href="{% url urls_paths.follow_up_message_list.redirect application_id=application.pk %}" title="Follow-up Message">
+            <i class="bi bi-journal-text"></i> Follow-up Message
+        </a>
+    </li>
+    <!-- Cover Letter Button -->
+    <li>
+        {% if cover_letter %}
+            <a href="{% url urls_paths.cover_letter_details.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}" title="View Cover Letter">
+                <i class="bi bi-file-earmark-text"></i> Cover Letter
+            </a>
+        {% else %}
+            <a href="{% url urls_paths.add_cover_letter.redirect application_id=application.pk %}" title="Add Cover Letter">
+                <i class="bi bi-plus-circle"></i> Add Cover Letter
+            </a>
+        {% endif %}
+    </li>
+
+    <!-- Resume Button -->
+    <li>
+        {% if resume %}
+            <a href="{% url urls_paths.resume_details.redirect application_id=application.pk resume_id=resume.pk %}" title="View Resume">
+                <i class="bi bi-file-earmark-text"></i> Resume
+            </a>
+        {% else %}
+            <a href="{% url urls_paths.add_resume_auto.redirect application_id=application.pk %}" title="Add Resume">
+                <i class="bi bi-plus-circle"></i> Add Resume
+            </a>
+        {% endif %}
+    </li>
+
+
+     <!-- Credentials Button -->
+    <li>
+        <a href="{% url urls_paths.application_credentials_list.redirect application_id=application.pk %}" title="Application Credential">
+            <i class="bi bi-shield-lock"></i> Application Credential
+        </a>
+    </li>
+
+     <!-- Interview Preparation Button -->
+    <li>
+        <a href="{% url urls_paths.interview_preparation_list.redirect application_id=application.pk %}" title="Interview Preparation">
+            <i class="bi bi-chat-dots"></i> Interview Preparation
+        </a>
+    </li>
+
+</ul>
+
+
+

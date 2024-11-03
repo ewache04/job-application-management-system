@@ -1,0 +1,44 @@
+{#ManageAPI/templates/update_api_key.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}Update API Key{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Form for Update Api key -->
+            <!-- Update API Key Form -->
+            <h3 class="card-title">Update API Key ({{ key.key_name }})</h3>
+            <form class="panel slide" method="post" action="{% url urls_paths.update_api_key.redirect user_id=user.pk api_key_id=key.pk %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="row">
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update API Key</button>
+                            <a href="{% url urls_paths.api_key_list.redirect user_id=user.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

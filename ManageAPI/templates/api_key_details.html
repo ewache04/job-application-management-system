@@ -1,0 +1,28 @@
+{# ManageAPI/templates/api_key_details.html #}
+{% extends urls_paths.base_html %}
+{% block title %}API Key Details{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="text-center">
+                <h3 class="card-title">API Key Details ({{ api_key.key_name }})</h3>
+            </div>
+            <div class="panel slide">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Key Name:</strong> {{ api_key.key_name }}</li>
+                                <li class="list-group-item"><strong>Key Value:</strong> {{ api_key.key_value }}</li>
+                                <li class="list-group-item"><strong>Default:</strong> {% if api_key.is_default %}Yes{% else %}No{% endif %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

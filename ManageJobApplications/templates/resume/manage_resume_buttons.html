@@ -1,0 +1,15 @@
+{#ManageJobApplications/templates/resume/manage_cover_letter_buttons.html#}
+{% if not resume_details_mode %}
+    <a href="{% url urls_paths.resume_details.redirect application_id=application.pk resume_id=resume.pk %}" class="btn btn-lg btn-info" title="View Resume Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+
+
+{% endif %}
+
+<a href="{% url urls_paths.update_resume.redirect application_id=application.pk resume_id=resume.pk %}" class="btn btn-lg  btn-info" title="Edit Resume">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+<a href="{% url urls_paths.delete_confirmation_resume.redirect application_id=application.pk resume_id=resume.pk %}" class="btn btn-lg  btn-danger" title="Delete Resume">
+    <i class="bi bi-trash"></i> Delete
+</a>

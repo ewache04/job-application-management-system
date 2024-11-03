@@ -1,0 +1,87 @@
+{#ManageJobApplications/templates/application/add_application_auto.html#}
+{% extends urls_paths.base_html %}
+{% block title %}Add Job Application Automatically{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Form for Add Application -->
+
+            <!-- Add Application Form -->
+            <h3 class="card-title">Add Job Application</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.add_application_auto.redirect user_id=user.pk %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row container-fluid">
+                    <div class="col-sm-12 form-group">
+                        {% if user.first_name %}
+                            <h3><b>Copy and paste application summary *</b></h3>
+                            <textarea id="summarize_job_application" placeholder="Hi {{ user.first_name }}, copy and paste job description you have applied to or love to apply to, and our software will auto-track progress for you" name="summarize_job_application" class="form-control" rows="12" required></textarea>
+                        {% else %}
+                            <textarea id="summarize_job_application" placeholder="Hello there! Copy and paste job description you have applied to or love to apply to, and our software will auto-track progress for you" name="summarize_job_application" class="form-control" rows="12" required></textarea>
+                        {% endif %}
+                        {% if form.summarize_job_application.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.summarize_job_application.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Add job posting URL input field -->
+                    <div class="col-sm-12 form-group">
+                        <label for="job_posting_url">Job posting URL *</label>
+                        <input type="url" id="job_posting_url" name="job_posting_url" class="form-control" placeholder="Enter the job posting URL" required>
+                        {% if form.job_posting_url.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in form.job_posting_url.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="row">
+                        <!-- Add the resume file input field here -->
+                        <div class="col-sm-6 form-group">
+                            <h3 class="text-center"><b>Select resume *</b></h3>
+                            <input type="file" class="form-control" id="resume_file" name="resume_file">
+                            {% if form.resume_file.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.resume_file.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Add the cover letter file input field here -->
+                        <div class="col-sm-6 form-group">
+                            <h3 class="text-center"><b>Select cover letter (Optional)</b></h3>
+                            <input type="file" class="form-control" id="cover_letter_file" name="cover_letter_file">
+                            {% if form.cover_letter_file.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in form.cover_letter_file.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Add Application</button>
+                            <a href="{% url urls_paths.user_home.redirect user_id=user.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

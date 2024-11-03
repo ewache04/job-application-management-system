@@ -1,0 +1,50 @@
+{% extends urls_paths.base_html %}
+{% block title %}Contact List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Contact List -->
+            {% if contacts %}
+            <div class="table-responsive">
+                <h3 class="card-title">Contacts at {{ application.company_name }}</h3>
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in contacts %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.contact_details.redirect application_id=application.pk contact_id=contact.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ contact.first_name }}</td>
+                            <td>{{ contact.last_name }}</td>
+                            <td>
+                                <a href="{% url urls_paths.contact_details.redirect application_id=application.pk contact_id=contact.pk %}" title="View Contact Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No contacts available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

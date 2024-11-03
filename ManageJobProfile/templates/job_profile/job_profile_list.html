@@ -1,0 +1,54 @@
+{% extends urls_paths.base_html %}
+{% block title %}Job Profile List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Job Profile List -->
+            {% if job_profiles %}
+            <div class="table-responsive">
+                <h3 class="card-title">Job Profile List</h3>
+
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Company Name</th>
+                            <th>Job Title</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job_profile in job_profiles %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.job_profile_details.redirect user_id=user.pk job_profile_id=job_profile.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ job_profile.company }}</td>
+                            <td>{{ job_profile.title }}</td>
+                            <td>{{ job_profile.start_date }}</td>
+                            <td>{{ job_profile.end_date }}</td>
+                            <td>
+                                <a href="{% url urls_paths.job_profile_details.redirect user_id=user.pk job_profile_id=job_profile.pk %}" title="View Job Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No job profiles available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

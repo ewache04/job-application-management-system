@@ -1,0 +1,48 @@
+<!-- ManageSubscription/templates/user_payment/manage_subscription.html -->
+{% extends urls_paths.base_html %}
+{% block title %}Subscription History{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% if all_subscription_details %}
+    <div class="table-responsive">
+        <h3 class="card-title">Subscription History</h3>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subscription in all_subscription_details %}
+                    <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.subscription_detail.redirect user_id=user.pk subscription_id=subscription.id %}'">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ subscription.plan_nickname }}</td>
+                        <td>{{ subscription.status }}</td>
+                        <td>{{ subscription.amount }} {{ sub.currency }}</td>
+                        <td>{{ subscription.start_date }}</td>
+                        <td>{{ subscription.end_date }}</td>
+                        <td><a href='{% url urls_paths.subscription_detail.redirect user_id=user.pk subscription_id=subscription.id %}'>View Details</a></td>
+                    </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No subscription history found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h3>You do not have any subscriptions.</h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

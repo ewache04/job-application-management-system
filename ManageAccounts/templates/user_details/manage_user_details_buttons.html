@@ -1,0 +1,14 @@
+{#ManageAccounts/templates/user_details/manage_user_details_buttons.html#}
+
+<a href="{% url urls_paths.update_profile.redirect user_id=user.pk %}" class="btn btn-lg btn-primary">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.change_password.redirect user_id=user.pk %}" class="btn btn-lg btn-info">
+    Change Password
+</a>
+
+<a href="{% url urls_paths.confirm_delete_user.redirect  user_id=user.pk %}" class="btn btn-lg btn-danger">
+    <i class="bi bi-trash"></i>
+    Delete Account
+</a>

@@ -1,0 +1,13 @@
+{% if not contact_details_mode %}
+    <a href="{% url urls_paths.contact_details.redirect application_id=application.pk contact_id=contact.pk %}" class="btn btn-info" title="View Contact Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+{% endif %}
+
+<a href="{% url urls_paths.update_contact.redirect application_id=application.pk contact_id=contact.pk %}" class="btn btn-lg btn-info" title="Edit Application">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.delete_confirmation_contact.redirect application_id=application.pk contact_id=contact.pk %}" class="btn btn-lg btn-danger" title="Delete Application">
+    <i class="bi bi-trash"></i> Delete
+</a>

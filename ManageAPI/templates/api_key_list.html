@@ -1,0 +1,51 @@
+{#ManageAPI/templates/api_key_list.html#}
+{% extends urls_paths.base_html %}
+{% block title %}API Key List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- API Key List -->
+            {% if api_keys %}
+            <div class="table-responsive">
+                <h3 class="card-title">API Key List</h3>
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header">
+                            <th>#</th>
+                            <th>Key Name</th>
+                            <th>Key Value</th>
+                            <th>Default</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for api_key in api_keys %}
+                            <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.api_key_details.redirect user_id=user.pk api_key_id=api_key.pk %}'">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ api_key.key_name }}</td>
+                                <td>{{ api_key.key_value }}</td>
+                                <td title="Default">{% if api_key.is_default %}Yes{% else %}No{% endif %}</td>
+                                <td>
+                                    <a href="{% url urls_paths.api_key_details.redirect user_id=user.pk api_key_id=api_key.pk %}" title="Details">
+                                        <i class="bi bi-eye"></i> Manage API Key
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No API keys available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

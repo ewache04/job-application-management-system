@@ -1,0 +1,29 @@
+{% extends urls_paths.base_html %}
+
+{% block title %}Confirm Delete Follow-up Message{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+
+                <div class="text-center">
+                    <h3>Confirm Follow-up Message Deletion</h3>
+                </div>
+
+                <!-- Confirm deletion of a follow-up message -->
+                <p>Are you sure you want to delete the follow-up message with subject:<br> "{{ follow_up_message.follow_up_message_subject }}" associated with "{{ follow_up_message.application.company_name }}"?</p>
+
+                <form method="post" action="{% url urls_paths.delete_confirmation_follow_up_message.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-sm">Yes, Delete</button>
+                        <a href="{% url urls_paths.follow_up_message_list.redirect application_id=application.pk %}" class="btn btn-default btn-sm" title="Go Back">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

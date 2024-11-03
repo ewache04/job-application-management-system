@@ -1,0 +1,50 @@
+<!-- ManageSubscription/templates/user_payment/manage_stripe_subscription.html -->
+{% extends urls_paths.base_html %}
+{% block title %}Manage Subscription{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    {% if subscription %}
+    <div class="card text-center mb-4">
+        <div class="card-header">
+            <h4>Manage Your Subscriptions</h4>
+        </div>
+        <div class="card-body">
+            {% if subscription %}
+                <h5 class="card-title">Current Plan: {{ subscription.plan.nickname }}</h5>
+                <p class="card-text">Status: {{ subscription.status }}</p>
+
+                <p class="card-text">Next Billing Date: {{ next_billing_date }}</p>
+                <form method="post" action="{% url urls_paths.manage_stripe_subscription.redirect user_id=user.pk subscription_id=subscription.id %}">
+
+                    {% csrf_token %}
+                        <input type="hidden" name="subscription_id" value="{{ subscription.id }}">
+
+                    {% if not subscription_active %}
+                        <button type="submit" name="action" value="resume" class="btn btn-lg btn-warning" title="Resume Subscription">Resume Subscription</button>
+                    {% endif %}
+
+                    <button type="submit" name="action" value="refund" class="btn btn-lg btn-info" title="Request Refund"
+                        {% if not refund_eligible or refund_requested %} disabled {% endif %}>
+                        {% if not refund_eligible or refund_requested %} Refund Initiated {% else %} Refund {% endif %}
+                    </button>
+
+                    {% if subscription_active %}
+                        <button type="submit" name="action" value="cancel" class="btn btn-lg btn-danger" title="Cancel Subscription">Cancel Subscription</button>
+                    {% endif %}
+                </form>
+
+            {% else %}
+                <p class="card-text">You do not have an active subscription.</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% else %}
+    <div class="text-center">
+        <h3>You do not have any subscriptions.</h3>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{# ManageAccounts/templates/user_home.html #}
+
+{% if applications %}
+    {% include urls_paths.application_list.render %}
+{% else %}
+    {% include urls_paths.add_application_auto.render %}
+{% endif %}
+

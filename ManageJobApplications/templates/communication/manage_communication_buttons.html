@@ -1,0 +1,13 @@
+{% if not communication_details_mode %}
+    <a href="{% url urls_paths.communication_details.redirect application_id=application.pk communication_id=communication.pk %}" class="btn btn-lg btn-info" title="View Communication Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+{% endif %}
+
+<a href="{% url urls_paths.update_communication.redirect application_id=application.pk communication_id=communication.pk %}" class="btn btn-lg btn-info" title="Edit Communication">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.delete_confirmation_communication.redirect application_id=application.pk communication_id=communication.pk %}" class="btn btn-lg btn-danger" title="Delete Communication">
+    <i class="bi bi-trash"></i> Delete
+</a>

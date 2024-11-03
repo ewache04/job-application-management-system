@@ -1,0 +1,51 @@
+{% extends urls_paths.base_html %}
+{% block title %}Follow-up Messages List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Follow-up Message List -->
+            {% if follow_up_messages %}
+            <div class="table-responsive">
+            <h3 class="card-title">Follow-up message at {{ application.company_name }}</h3>
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Company Email</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for follow_up_message in follow_up_messages %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.follow_up_message_details.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{% if follow_up_message.follow_up_message_subject %}{{ follow_up_message.follow_up_message_subject }}{% else %}N/A{% endif %}</td>
+                            <td>{% if follow_up_message.receivers_email %}{{ follow_up_message.receivers_email }}{% else %}N/A{% endif %}</td>
+                            <td>{% if follow_up_message.created_at %}{{ follow_up_message.created_at }}{% else %}N/A{% endif %}</td>
+                            <td>
+                                <a href="{% url urls_paths.follow_up_message_details.redirect application_id=application.pk follow_up_message_id=follow_up_message.pk %}" title="View Follow-up Message Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No follow-up message available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

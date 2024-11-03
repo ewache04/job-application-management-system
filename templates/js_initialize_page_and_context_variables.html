@@ -1,0 +1,12 @@
+{#templates/js_initialize_page_and_context_variables.html#}
+<!-- Pass Django context variables to JavaScript -->
+<script>
+    var userId = '{{ user.pk }}';  // Pass the user ID from Django template
+    var csrfToken = '{{ csrf_token }}';  // Pass CSRF token if needed
+
+    // Call the initializePage function with the user ID
+    $(document).ready(function() {
+        initializePage(userId);
+    });
+    
+</script>

@@ -1,0 +1,27 @@
+{#ManageJobApplications/templates/job_profile_projects/confirm_delete_job_profile_project.html#}
+{% extends urls_paths.base_html %}
+{% block title %}Confirm Delete Project{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+
+                <h3 class="card-title">Confirm Project Deletion</h3>
+
+                <!-- Confirm deletion of a job profile -->
+                <p>Are you sure you want to delete the project "{{ job_profile.job_title }}" at "{{ job_profile.company }}"?</p>
+
+                <form method="post" action="{% url urls_paths.confirm_delete_job_profile_project.redirect user_id=user.pk job_profile_id=job_profile.pk job_profile_project_id=job_profile_project.pk %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-sm">Yes, Delete</button>
+                        <a href="{% url urls_paths.job_profile_projects_list.redirect user_id=user.pk job_profile_id=job_profile.pk %}" class="btn btn-default">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

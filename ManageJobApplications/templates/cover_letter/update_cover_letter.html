@@ -1,0 +1,45 @@
+{#ManageJobApplications/templates/cover_letter/update_cover_letter.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update Cover Letter{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Update Cover Letter Form -->
+            <h3 class="card-title">Update Cover Letter</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.update_cover_letter.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update Cover Letter</button>
+                            <a href="{% url urls_paths.cover_letter_details.redirect application_id=application.pk cover_letter_id=cover_letter.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

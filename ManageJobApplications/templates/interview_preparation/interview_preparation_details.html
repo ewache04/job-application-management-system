@@ -1,0 +1,49 @@
+{#ManageJobApplications/templates/interview_preparation/interview_preparation_details.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}
+    Interview Preparation Details - {{ application.position_title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="panel col-sm-12 col-xs-12">
+            <div class="card">
+                <!-- Interview Preparation Details -->
+                <h3 class="card-title">Interview Preparation Details</h3>
+
+                <div class="card-body">
+
+                    <h1 class="text-center"><strong>About Company</strong></h1>
+                    <div class="non-editable-textarea wrap-text">
+                        <p><strong>Information:</strong></p>
+
+                        {% if interview_preparation.about_company %}
+                            <div>
+                                {{ interview_preparation.about_company|linebreaks }}
+                            </div>
+                        {% else %}
+                            <p>Company information missing</p>
+                        {% endif %}
+                    </div>
+
+                    <h1 class="text-center"><strong>Interview Questions</strong></h1>
+                    <div class="non-editable-textarea wrap-text">
+                        <p><strong>Questions:</strong></p>
+
+                        {% if interview_preparation.prep_questions %}
+                            <div>
+                               {{ interview_preparation.prep_questions|linebreaks }}
+                            </div>
+                        {% else %}
+                            <p>Questions are missing</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

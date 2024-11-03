@@ -1,0 +1,21 @@
+<!--ManageSubscription/templates/user_payment/payment_cancelled.html-->
+{% extends urls_paths.base_html %}
+{% block title %}Payment Cancelled{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <h1 class="text-center">
+                Payment cancelled
+            </h1>
+            <p>Your payment was cancelled. Please try again.</p>
+        </div>
+
+    <div class="text-center">
+        <a href="{% url urls_paths.subscription_list.redirect user_id=user.pk %}" title="Subscription List" class="btn btn-sm btn-default">Go Back</a>
+    </div>
+    <br>
+    </div>
+</div>
+{% endblock %}

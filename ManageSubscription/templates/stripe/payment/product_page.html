@@ -1,0 +1,35 @@
+<!-- ManageSubscription/templates/user_payment/product_page.html -->
+{% extends urls_paths.base_html %}
+{% block title %}Product Page{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="card-deck mb-3 text-center">
+        {% for product in products %}
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h2 class="my-0 font-weight-normal">{{ product.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">${{ product.price }} <small class="text-muted">/ {{ product.interval }}</small></h1>
+                    <p class="card-text">{{ product.description }}</p>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        {% for feature in product.features %}
+                            <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if user.is_authenticated %}
+                        <form enctype="multipart/form-data" method="post" action="{% url urls_paths.product_page.redirect user_id=user.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-lg btn-success">Subscribe Now</button>
+                            <a href="{% url urls_paths.subscription_list.redirect user_id=user.pk %}" title="Manage Subscription" class="btn btn-lg btn-default">Cancel</a>
+                        </form>
+                    {% else %}
+                        <a href="{% url urls_paths.login.redirect %}" class="btn btn-sm btn-secondary">Log in</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

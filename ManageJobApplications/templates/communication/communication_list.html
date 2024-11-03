@@ -1,0 +1,48 @@
+{% extends urls_paths.base_html %}
+{% block title %}Communications List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Communication List -->
+            {% if communications %}
+            <div class="table-responsive">
+                <h3 class="card-title">Communications at {{ application.company_name }}</h3>
+                <table class="table table-striped" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Subject</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for communication in communications %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.communication_details.redirect application_id=application.pk communication_id=communication.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{% if communication.communication_subject %}{{ communication.communication_subject }}{% else %}N/A{% endif %}</td>
+                            <td>{% if communication.created_at %}{{ communication.created_at }}{% else %}N/A{% endif %}</td>
+                            <td>
+                                <a href="{% url urls_paths.communication_details.redirect application_id=application.pk communication_id=communication.pk %}"  title="View Communication Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No communication available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

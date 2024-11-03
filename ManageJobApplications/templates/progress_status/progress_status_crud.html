@@ -1,0 +1,13 @@
+{% if not progress_status_crud_detail_mode %}
+    <a href="{% url urls_paths.progress_status_details.redirect application_id=application.pk progress_status_id=progress_status.pk %}" class="btn btn-info btn-sm" title="View Application Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+{% endif %}
+
+<a href="{% url urls_paths.update_progress_status.redirect application_id=application.pk progress_status_id=progress_status.pk %}" class="btn btn-info btn-sm" title="Edit Application">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a href="{% url urls_paths.delete_confirmation_progress_status.redirect application_id=application.pk progress_status_id=progress_status.pk %}" class="btn btn-danger btn-sm" title="Delete Application">
+    <i class="bi bi-trash"></i> Delete
+</a>

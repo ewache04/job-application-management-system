@@ -1,0 +1,33 @@
+{#ManageAccounts/templates/confirm_delete_user.html#}
+
+{% extends urls_paths.base_html %}
+
+{% block title %}Confirm Account Deletion{% endblock %}
+
+{% block content %}
+<!-- Container (Confirm Account Deletion Section) -->
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+                <h3 class="card-title">Confirm Account Deletion</h3>
+                <p>Are you sure you want to delete your account?</p>
+                <form method="post" action="{% url urls_paths.confirm_delete_user.redirect user_id=user.pk  %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger">Yes, Delete My Account</button>
+                        <a href="{% url urls_paths.user_account.redirect user_id=user.pk  %}" class="btn btn-default">Cancel</a>
+                    </div>
+                    {% if form.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.non_field_errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

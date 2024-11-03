@@ -1,0 +1,44 @@
+<!-- ManageSubscription/templates/user_payment/payment_successful.html -->
+{% extends urls_paths.base_html %}
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <h1 class="text-center">
+                Payment successful
+            </h1>
+            <p class="text-center">Thank you for your purchase!</p>
+
+            <!-- Receipt Details -->
+            <div class="row mt-5">
+                <div class="col-md-12 offset-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Receipt Details</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><strong>Customer Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+                                <li class="list-group-item"><strong>Customer Email:</strong> {{ customer_email }}</li>
+                                <li class="list-group-item"><strong>Date:</strong> {{ transaction_date }}</li>
+                                <li class="list-group-item"><strong>Expiration Date:</strong> {{ expiration_date }}</li>
+                                <li class="list-group-item"><strong>Amount Paid:</strong> ${{ amount_paid }}</li>
+                                <li class="list-group-item"><strong>Product:</strong> {{ product_name }}</li>
+                                <li class="list-group-item"><strong>Transaction ID:</strong> {{ transaction_id }}</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="{% url urls_paths.subscription_list.redirect user_id=user.pk %}" title="Subscription List" class="btn btn-lg btn-default">Go Back</a>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

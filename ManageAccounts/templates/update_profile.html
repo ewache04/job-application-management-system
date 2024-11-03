@@ -1,0 +1,46 @@
+{#ManageAccounts/templates/update_profile.html#}
+
+{% extends urls_paths.base_html %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+<!-- Container (Update Profile Section) -->
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default" id="content-panel">
+            <h3 class="card-title">Update Profile</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.update_profile.redirect user_id=user.pk  %}">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ field.errors }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="row"><br><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Update Profile</button>
+                            <a href="{% url urls_paths.user_account.redirect user_id=user.pk  %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

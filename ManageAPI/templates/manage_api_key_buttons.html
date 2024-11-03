@@ -1,0 +1,8 @@
+{#ManageAPI/templates/manage_api_key_buttons.html#}
+<a class="btn btn-lg btn-primary"  href="{% url  urls_paths.update_api_key.redirect user_id=user.pk api_key_id=api_key.pk %}" title="Edit API Key">
+   <i class="bi bi-pencil-square"></i> Edit
+</a>
+
+<a class="btn btn-lg btn-danger" href="{% url  urls_paths.confirm_delete_api_key.redirect user_id=user.pk api_key_id=api_key.pk %}" title="Delete API Key">
+    <i class="bi bi-trash"></i> Delete
+</a>

@@ -1,0 +1,27 @@
+{#ManageJobApplications/templates/interview_preparation/delete_confirmation_interview_preparation.html#}
+{% extends urls_paths.base_html %}
+
+{% block title %}Confirm Delete Interview Preparation{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default text-center" id="content-panel">
+            <div class="panel-body">
+                <h3 class="card-title">Confirm Interview Preparation Deletion</h3>
+
+                <!-- Confirm deletion of an interview preparation -->
+                <p>Are you sure you want to delete the interview preparation for "{{ application.position_title }}" at "{{ application.company_name }}"?</p>
+
+                <form method="post" action="{% url urls_paths.delete_confirmation_interview_preparation.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}">
+                    {% csrf_token %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-danger btn-sm">Yes, Delete</button>
+                        <a href="{% url urls_paths.interview_preparation_details.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}" class="btn btn-default btn-sm" title="Go Back">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+<!-- templates/details_button_logic.html -->
+
+<div>
+    {% if content_details_mode %}
+        <div class="d-flex justify-content-start align-items-center">
+            <div class="row text-center mt-3">
+                <div class="col-12">
+                    <div class="btn-group">
+                        {% if application_details_mode %}
+                            {% include urls_paths.manage_application_buttons.render %}
+                        {% elif my_application_details_mode %}
+                            {% include urls_paths.manage_my_application_buttons.render %}
+                            
+                        {% elif assistant_settings_details_mode %}
+                            {% include urls_paths.manage_assistant_settings_buttons.render %}
+                        {% elif job_profile_details_mode %}
+                            {% include urls_paths.manage_job_profile_buttons.render %}
+                            
+                        {% elif job_profile_project_details_mode %}
+                            {% include urls_paths.manage_job_profile_project_buttons.render %}
+                        {% elif user_details_mode %}
+                            {% include urls_paths.manage_user_details_buttons.render %}
+                        {% elif api_key_details_mode %}
+                            {% include urls_paths.manage_api_key_buttons.render %}
+                        {% elif assistant_settings_details_mode %}
+                            {% include urls_paths.manage_assistant_settings_buttons.render %}
+                            
+                        {% elif career_summary_details_mode %}
+                            {% include urls_paths.manage_career_summary_buttons.render %}
+                            
+                        {% elif contact_details_mode %}
+                            {% include urls_paths.manage_contact_buttons.render %}
+                        {% elif cover_letter_details_mode %}
+                            {% include urls_paths.manage_cover_letter_buttons.render %}
+                        {% elif resume_details_mode %}
+                            {% include urls_paths.manage_resume_buttons.render %}
+                        {% elif communication_details_mode %}
+                            {% include urls_paths.manage_communication_buttons.render %}
+                        {% elif interview_preparation_details_mode %}
+                            {% include urls_paths.manage_interview_preparation_buttons.render %}
+                        {% elif follow_up_message_details_mode %}
+                            {% include urls_paths.manage_follow_up_message_buttons.render %}
+                        {% elif credentials_details_mode %}
+                            {% include urls_paths.manage_application_credentials_buttons.render %}
+                        {% elif stripe_subscription_details_mode %}
+                            {% include urls_paths.manage_stripe_subscription_buttons.render %}
+                        {% endif %}
+                    
+                    
+                        <!-- Go Back Button -->
+                        <a href=" 
+                            {% if contact_details_mode %}
+                                {% url urls_paths.contact_list.redirect application_id=application.pk %}
+                            {% elif communication_details_mode %}
+                                {% url urls_paths.communication_list.redirect application_id=application.pk %}
+                            {% elif follow_up_message_details_mode %}
+                                {% url urls_paths.follow_up_message_list.redirect application_id=application.pk %}
+                            {% elif credentials_details_mode %}
+                                {% url urls_paths.application_credentials_list.redirect application_id=application.pk %}
+                            {% elif interview_preparation_details_mode %}
+                                {% url urls_paths.interview_preparation_list.redirect application_id=application.pk %}
+                            {% elif stripe_subscription_details_mode %}
+                                {% url urls_paths.subscription_list.redirect user_id=user.pk %}
+                            
+                            {% elif manage_stripe_subscription_mode %}
+                                {% url urls_paths.subscription_detail.redirect user_id=user.pk subscription_id=subscription.id %}
+                            
+                            {% elif job_profile_details_mode %}
+                                {% url urls_paths.job_profile_list.redirect user_id=user.pk %}
+                                
+                            {% elif job_profile_project_details_mode %}
+                                {% url urls_paths.job_profile_projects_list.redirect user_id=user.pk job_profile_id=job_profile.pk %}
+                                
+                            {% elif user_details_mode %}
+                                {% url urls_paths.user_account.redirect user_id=user.pk %}
+                            {% elif api_key_details_mode %}
+                                {% url urls_paths.api_key_list.redirect user_id=user.pk %}
+                            {% elif assistant_settings_details_mode %}
+                                {% url urls_paths.user_account.redirect user_id=user.pk %}
+                                
+                            {% elif career_summary_details_mode %}
+                                {% url urls_paths.user_home.redirect user_id=user.pk %}
+                            {% else %}
+                                {% url urls_paths.user_home.redirect user_id=user.pk %}
+                            {% endif %}
+                        " class="btn btn-lg btn-default" 
+                           title="{% if contact_details_mode %}
+                                        Go Back to Contact List
+                                   {% elif communication_details_mode %}
+                                        Go Back to Communication List
+                                   {% elif follow_up_message_details_mode %}
+                                        Go Back to Follow-Up Message List
+                                   {% elif credentials_details_mode %}
+                                        Go Back to Credentials List
+                                   {% elif interview_preparation_details_mode %}
+                                        Go Back to Interview Preparation List
+                                   {% elif stripe_subscription_details_mode %}
+                                        Go Back to Subscription List
+                                   {% elif manage_stripe_subscription_mode %}
+                                        Go Back to Subscription Details
+                                   {% elif job_profile_details_mode %}
+                                        Go Back to Job Profile List
+                                   {% elif job_profile_project_details_mode %}
+                                        Go Back to Project List
+                                   {% elif user_details_mode %}
+                                        Go Back to User Account
+                                   {% elif api_key_details_mode %}
+                                        Go Back to API Key List
+                                   {% elif assistant_settings_details_mode %}
+                                        Go Back to Assistant Settings
+                                   {% elif career_summary_details_mode %}
+                                        Go Back to User Account
+                                   {% else %}
+                                        Go Back to Home
+                                   {% endif %}">
+                            Go Back
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>

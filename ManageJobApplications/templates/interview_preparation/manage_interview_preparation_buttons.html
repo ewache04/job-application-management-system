@@ -1,0 +1,14 @@
+{#ManageJobApplications/templates/interview_preparation/manage_interview_preparation_buttons.html#}
+{% if not interview_preparation_details_mode %}
+    <a href="{% url urls_paths.interview_preparation_details.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}" class="btn btn-lg btn-info" title="View Interview Preparation Details">
+        <i class="bi bi-info"></i> Details
+    </a>
+
+{% endif %}
+
+<a href="{% url urls_paths.update_interview_preparation.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}" class="btn btn-lg btn-info" title="Edit Interview Preparation">
+    <i class="bi bi-pencil-square"></i> Edit
+</a>
+<a href="{% url urls_paths.delete_confirmation_interview_preparation.redirect application_id=application.pk interview_preparation_id=interview_preparation.pk %}" class="btn btn-lg btn-danger" title="Delete Interview Preparation">
+        <i class="bi bi-trash"></i> Delete
+</a>

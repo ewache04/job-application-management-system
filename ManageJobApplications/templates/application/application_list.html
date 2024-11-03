@@ -1,0 +1,54 @@
+{% extends urls_paths.base_html %}
+{% block title %}Job Application List{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Job Application List -->
+            {% if applications %}
+            <h3 class="card-title">Application List</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm" id="myTable">
+                    <thead>
+                        <tr class="header text-center">
+                            <th>#</th>
+                            <th>Company Name</th>
+                            <th>Job Title</th>
+                            <th>Deadline</th>
+                            <th>Visa Sponsorship</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for application in applications %}
+                        <tr class="objects-row clickable-row" onclick="window.location.href='{% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}'">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ application.company_name }}</td>
+                            <td>{{ application.job_title }}</td>
+                            <td>{{ application.application_deadline }}</td>
+                            <td>{{application.visa_sponsorship}}</td>
+                            <td>
+                                <a href="{% url urls_paths.application_details.redirect user_id=user.pk application_id=application.pk %}" title="View Application Details">
+                                    <i class="bi bi-info-circle"></i> Details
+                                </a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="notFound" class="text-center" style="display: none;">
+                <h4>No matching records found.</h4>
+            </div>
+            {% else %}
+            <div class="text-center">
+                <h3>No job applications available.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

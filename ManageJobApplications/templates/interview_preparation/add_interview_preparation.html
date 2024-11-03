@@ -1,0 +1,83 @@
+{#ManageJobApplications/templates/interview_preparation/add_interview_preparation.html#}
+{% extends urls_paths.base_html %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Interview Preparation{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="panel-body" id="content-panel">
+        <div class="panel col-sm-12 col-xs-12">
+            <!-- Add Interview Preparation Form -->
+            <h3 class="card-title">Add Interview Preparation</h3>
+
+            <form class="panel slide" method="post" action="{% url urls_paths.add_interview_preparation.redirect application_id=application.pk %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="panel-body">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center"><b>About Company</b></h3>
+                                <textarea name="about_company" rows="12" class="form-control" placeholder="Please provide details about the company" required>{{ request.POST.about_company }}</textarea>
+                                {% if form.about_company.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.about_company.errors }}
+                                    </div>
+                                {% endif %}
+
+                                <!-- Add the about company file input field here -->
+                                <h3 class="text-center"><b>Upload About Company (Optional)</b></h3>
+                                <input type="file" class="form-control" id="about_company_file" name="about_company_file">
+                                {% if form.about_company_file.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {% for error in form.about_company_file.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h3 class="text-center"><b>Preparation Questions</b></h3>
+                                <textarea name="prep_questions" rows="12" class="form-control" placeholder="Please provide the preparation questions" required>{{ request.POST.prep_questions }}</textarea>
+                                {% if form.prep_questions.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.prep_questions.errors }}
+                                    </div>
+                                {% endif %}
+
+                                <!-- Add the preparation questions file input field here -->
+                                <h3 class="text-center"><b>Upload Questions (Optional)</b></h3>
+                                <input type="file" class="form-control" id="prep_questions_file" name="prep_questions_file">
+                                {% if form.prep_questions_file.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {% for error in form.prep_questions_file.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row"><br>
+                        <div class="col-sm-12 form-group text-center">
+                            <button class="btn btn-default" type="submit">Add Interview Preparation</button>
+                            <a href="{% url urls_paths.interview_preparation_list.redirect application_id=application.pk %}" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
