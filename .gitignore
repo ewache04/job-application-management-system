@@ -27,7 +27,7 @@ venv/
 # media/
 
 # Static files
-staticfiles/
+# staticfiles/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
