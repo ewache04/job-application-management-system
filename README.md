@@ -1,5 +1,3 @@
-Here’s an updated version of your README that includes instructions for setting up the `.env` file with placeholder values, as well as general enhancements for clarity and usability.
-
 ---
 
 # Overview of AppliFocus
