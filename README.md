@@ -10,6 +10,8 @@ AppliFocus is a revolutionary Job Application Management System (JAMS) that fund
 
 At the core of AppliFocus lies the transformative power of Artificial Intelligence (AI). This cutting-edge technology is the engine that drives AppliFocus, enabling it to deliver personalized, data-driven insights that guide users through every step of the job application process. Whether generating customized content based on specific job postings or offering real-time feedback on resumes and cover letters, AppliFocus ensures that each job seeker presents the most compelling and polished profile to potential employers. The AI capabilities of AppliFocus are designed to not only meet the demands of today’s job market but also to anticipate the needs of job seekers, providing them with the tools and guidance necessary to stand out in a crowded field.
 
+
+
 ## Table of Contents
 
 - [Features](#features)
@@ -229,8 +231,20 @@ project-root/
    - You’ll receive suggestions for enhancement and guidance on whether the job is a good match for your skills, helping you target the best opportunities.
 
 ## Application Screenshots
+Here are some screenshots showcasing the application's UI design and functionality.
 
-To view application screenshots, navigate to the `screenshots` folder. This folder contains images showcasing the UI of the application, giving you an insight into AppliFocus's design and functionality.
+![Index Page](./screenshots/index-page.png)
+
+![Login Page](./screenshots/login-page.png)
+
+![Register Page](./screenshots/register-page.png)
+
+![Explore Page](./screenshots/explore-page.png)
+
+![Application List](./screenshots/application-list.png)
+
+![Account Settings Page](./screenshots/account-settings-page.png)
+
 
 ## Contributing
 
